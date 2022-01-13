@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ItemTouchHelper.*
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recyclerviewdraganddropitem.view.RecyclerViewAdapter
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +20,11 @@ class MainActivity : AppCompatActivity() {
                 viewHolder: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder,
             ): Boolean {
+                val recyclerViewAdapter = recyclerView.adapter as RecyclerViewAdapter
+                val fromPosition = viewHolder.adapterPosition
+                val toPosition = target.adapterPosition
+                recyclerViewAdapter.moveItem(fromPosition, toPosition)
+                recyclerViewAdapter.notifyItemMoved(fromPosition, toPosition)
                 return true
             }
 
