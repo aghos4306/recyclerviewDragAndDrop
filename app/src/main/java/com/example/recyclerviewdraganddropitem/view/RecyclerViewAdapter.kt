@@ -26,11 +26,12 @@ class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ItemViewHol
     }
 
     override fun onBindViewHolder(holder: RecyclerViewAdapter.ItemViewHolder, position: Int) {
-
+        val moveItem = differ.currentList[position]
+        holder.bindView(moveItem)
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return differ.currentList.size
     }
 
     private val differCallback = object : DiffUtil.ItemCallback<User>() {
